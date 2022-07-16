@@ -25,7 +25,7 @@ const EditUser = ({match}) => {
   });
 
   // functions to build form returned by useForm() hook
-  const { register, handleSubmit, reset, setValue, errors, formState } =
+  const { register, handleSubmit, reset, setValue, formState } =
     useForm({
       resolver: yupResolver(validationSchema),
     });
@@ -59,44 +59,40 @@ const EditUser = ({match}) => {
         <div className="form-group col-5">
           <label>First Name</label>
           <input
-            name="firstName"
+            {...register('firstName', {required: true})}
             type="text"
-            ref={register}
-            className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
+            className={`form-control ${formState.errors.firstName ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.firstName?.message}</div>
+          <div className="invalid-feedback">{formState.errors.firstName?.message}</div>
         </div>
         <div className="form-group col-5">
           <label>Last Name</label>
           <input
-            name="lastName"
+            {...register('lastName', {required: true})}
             type="text"
-            ref={register}
-            className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
+            className={`form-control ${formState.errors.lastName ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.lastName?.message}</div>
+          <div className="invalid-feedback">{formState.errors.lastName?.message}</div>
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-7">
           <label>Email</label>
           <input
-            name="email"
+            {...register('email', {required: true})}
             type="text"
-            ref={register}
-            className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+            className={`form-control ${formState.errors.email ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.email?.message}</div>
+          <div className="invalid-feedback">{formState.errors.email?.message}</div>
         </div>
         <div className="form-group col">
           <label>Phone Number</label>
           <input
-            name="phone"
+            {...register('phone', {required: true})}
             type="text"
-            ref={register}
-            className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+            className={`form-control ${formState.errors.phone ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.phone?.message}</div>
+          <div className="invalid-feedback">{formState.errors.phone?.message}</div>
         </div>
       </div>
 

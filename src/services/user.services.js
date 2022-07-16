@@ -24,7 +24,7 @@ function getAll() {
 }
 
 function getById(id) {
-  let user = usersList.filter((user) => user.id === id)[0];
+  let user = usersList.filter((user) => user.id == id)[0];
   console.log(user);
   return new Promise((resolve, reject) => resolve(user));
   // return fetchWrapper.get(`${baseUrl}/${id}`);
@@ -38,10 +38,10 @@ function create(params) {
 }
 
 function update(id, params) {
-  let user = usersList.find((user) => user.id === id);
+  let user = usersList.find((user) => user.id == id);
   let updatedUser = { ...user, ...params };
   // Remove user with id
-  let users = usersList.filter((user) => user.id !== id);
+  let users = usersList.filter((user) => user.id != id);
   usersList = [...users, updatedUser];
   return new Promise((resolve, reject) => resolve(usersList));
 
