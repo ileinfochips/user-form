@@ -1,3 +1,6 @@
+import { createSlice } from '@reduxjs/toolkit';
+import { userReducer } from '../actions/users'
+
 // const baseUrl = '/users';
 let id = 1;
 let usersList = [
@@ -55,3 +58,25 @@ function _delete(id) {
 
   // return fetchWrapper.delete(`${baseUrl}/${id}`);
 }
+
+export const userSliceReducer = createSlice({
+	name: 'users',
+	initialState: { value: usersList },
+	reducers: {
+		userActions: ({value}, { payload: {action, user, id} }) => {
+			switch(action){
+				case 'add':
+          userReducer.createUser(value, user)
+				case 'update':
+					// userReducer.updateUser(state, payload.id, payload.user)
+				case 'delete':
+					userReducer.deleteUser(value, id)
+					// return [...state, payload.user];
+				default:
+					// return state
+			}
+		}
+	}
+});
+
+export const { userActions } = userSliceReducer.actions

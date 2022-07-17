@@ -4,11 +4,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup';
 
-import { userService, alertService } from '../services';
+import { userService, alertService } from '../reducers';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../reducers';
 
 const AddUser = (props) =>  {
+  const dispatch = useDispatch();
   const {id} = props.match;
-  const {history} = props;
 
   const isAddMode = !id;
   const phoneRegExp =
@@ -31,17 +33,11 @@ const AddUser = (props) =>  {
     });
 
   function onSubmit(data) {
-    return createUser(data);
-  }
-
-  function createUser(data) {
-    return userService
-      .create(data)
-      .then((info) => {
-        alertService.success('User added', { keepAfterRouteChange: true });
-        history.push('.');
-      })
-      .catch(alertService.error);
+    const payload = {
+      action: 'add',
+      user: data
+    }
+    dispatch(userActions(payload))
   }
 
   useEffect(() => {

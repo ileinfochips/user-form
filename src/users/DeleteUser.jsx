@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import { userService, alertService } from '../services';
+import { userService, alertService } from '../reducers';
 
 function Delete({ history, match }) {
   const [users, setUsers] = useState(null);

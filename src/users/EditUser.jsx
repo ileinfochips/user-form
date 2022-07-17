@@ -4,13 +4,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import { userService, alertService } from '../services';
+import { userService, alertService } from '../reducers';
 
 const EditUser = ({match}) => {
   const { history } = match;
   const { id } = useParams();
 
-    console.log(id)
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
