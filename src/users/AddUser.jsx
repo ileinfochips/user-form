@@ -27,7 +27,6 @@ const AddUser = (props) =>  {
         phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
         const payload = {
           action: 'ADD_USER',
           user: values
