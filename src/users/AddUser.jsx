@@ -12,80 +12,7 @@ const AddUser = (props) =>  {
 
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-  const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required('First Name is required'),
-    lastName: Yup.string().required('Last Name is required'),
-    email: Yup.string().email('Email is invalid').required('Email is required'),
-    phone: Yup.string()
-      .matches(phoneRegExp, 'Phone number is not valid')
-      .required('Phone is required'),
-  });
- 
-
-  // return (
-  //   <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
-  //     <h1>Add User</h1>
-  //     <div className="form-row">
-  //       <div className="form-group col-5">
-  //         <label>First Name</label>
-  //         <input            
-  //           {...register('firstName', {required: true})}
-  //           type="text"
-  //           className={`form-control ${formState.errors.firstName ? 'is-invalid' : ''}`}
-  //         />
-  //         <div className="invalid-feedback">{formState.errors.firstName?.message}</div>
-  //       </div>
-  //       <div className="form-group col-5">
-  //         <label>Last Name</label>
-  //         <input
-  //           {...register('lastName', {required: true})}
-  //           type="text"
-  //           className={`form-control ${formState.errors.lastName ? 'is-invalid' : ''}`}
-  //         />
-  //         <div className="invalid-feedback">{formState.errors.lastName?.message}</div>
-  //       </div>
-  //     </div>
-  //     <div className="form-row">
-  //       <div className="form-group col-7">
-  //         <label>Email</label>
-  //         <input
-  //           {...register('email', {required: true})}
-  //           type="text"
-  //           className={`form-control ${formState.errors.email ? 'is-invalid' : ''}`}
-  //         />
-  //         <div className="invalid-feedback">{formState.errors.email?.message}</div>
-  //       </div>
-  //       <div className="form-group col">
-  //         <label>Phone Number</label>
-  //         <input
-  //           {...register('phone', {required: true})}
-  //           type="text"
-  //           className={`form-control ${formState.errors.phone ? 'is-invalid' : ''}`}
-  //         />
-  //         <div className="invalid-feedback">{formState.errors.phone?.message}</div>
-  //       </div>
-  //     </div>
-
-  //     <div className="form-group">
-  //       <button
-  //         type="submit"
-  //         disabled={formState.isSubmitting}
-  //         className="btn btn-primary"
-  //       >
-  //         {formState.isSubmitting && (
-  //           <span className="spinner-border spinner-border-sm mr-1"></span>
-  //         )}
-  //         Save
-  //       </button>
-  //       <Link to={'/users'} className="btn btn-link">
-  //         Cancel
-  //       </Link>
-  //     </div>
-  //   </form>
-  // );
-
-
+  
   return (
     <Formik
       initialValues={{ firstName: '', lastName: '', email: '', phone: '' }}
@@ -111,23 +38,39 @@ const AddUser = (props) =>  {
       }}
     >
       <Form>
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" type="text"  className="form-control" />
-        <ErrorMessage name="firstName" />
+          <div class="form-group">
+            <label htmlFor="firstName">First Name</label>
+            <Field name="firstName" type="text"  className="form-control" />
+            <ErrorMessage name="firstName" >
+              { msg => <div style={{ color: 'red' }}>{msg}</div> }
+            </ErrorMessage>
+          </div>
 
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" type="text" className="form-control" />
-        <ErrorMessage name="lastName" />
+          <div class="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <Field name="lastName" type="text" className="form-control" />
+            <ErrorMessage name="lastName" >
+                { msg => <div style={{ color: 'red' }}>{msg}</div> }
+            </ErrorMessage>
+          </div>
 
-        <label htmlFor="email">Email Address</label>
-        <Field name="email" type="email" className="form-control" />
-        <ErrorMessage name="email" />
+          <div class="form-group">
+            <label htmlFor="email">Email Address</label>
+            <Field name="email" type="email" className="form-control" />
+			<ErrorMessage name="email" >
+                { msg => <div style={{ color: 'red' }}>{msg}</div> }
+            </ErrorMessage>
+          </div>
 
-        <label htmlFor="phone">Phone No</label>
-        <Field name="phone" type="text" className="form-control" />
-        <ErrorMessage name="phone" />
+          <div class="form-group">
+            <label htmlFor="phone">Phone No</label>
+            <Field name="phone" type="text" className="form-control" />
+			<ErrorMessage name="phone" >
+                { msg => <div style={{ color: 'red' }}>{msg}</div> }
+            </ErrorMessage>
+          </div>
 
-        <button type="submit">Submit</button>
+        <button className="btn btn-primary" type="submit">Submit</button>
         <Link to={'/users'} className="btn btn-link">
            Cancel
          </Link>
