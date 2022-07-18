@@ -12,35 +12,6 @@ let usersList = [
   },
 ];
 
-export const userService = {
-  update,
-};
-
-function getAll() {
-  return new Promise((resolve, reject) => resolve(usersList));
-}
-
-function getById(id) {
-  let user = usersList.filter((user) => user.id == id)[0];
-  console.log(user);
-  return new Promise((resolve, reject) => resolve(user));
-}
-
-function update(id, params) {
-  let user = usersList.find((user) => user.id == id);
-  let updatedUser = { ...user, ...params };
-  // Remove user with id
-  let users = usersList.filter((user) => user.id != id);
-  usersList = [...users, updatedUser];
-  return new Promise((resolve, reject) => resolve(usersList));
-}
-
-// prefixed with underscored because delete is a reserved word in javascript
-function _delete(id) {
-  // let users = usersList.filter((user) => user.id !== id);
-  return new Promise((resolve, reject) => resolve(usersList));
-}
-
 export const userSliceReducer = createSlice({
 	name: 'users',
 	initialState: usersList,

@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup';
 
-import { userService } from '../reducers';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../reducers';
 
@@ -40,15 +39,15 @@ const AddUser = (props) =>  {
     dispatch(userActions(payload))
   }
 
-  useEffect(() => {
-    if (!isAddMode) {
-      // get user and set form fields
-      userService.getById(id).then((user) => {
-        const fields = ['firstName', 'lastName', 'email', 'phone'];
-        fields.forEach((field) => setValue(field, user[field]));
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isAddMode) {
+  //     // get user and set form fields
+  //     userService.getById(id).then((user) => {
+  //       const fields = ['firstName', 'lastName', 'email', 'phone'];
+  //       fields.forEach((field) => setValue(field, user[field]));
+  //     });
+  //   }
+  // }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>

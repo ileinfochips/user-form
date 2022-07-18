@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { userService, alertService, userActions } from '../reducers';
+import { userActions } from '../reducers';
 
 const EditUser = ({match}) => {
   const { history } = match;
