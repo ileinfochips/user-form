@@ -58,12 +58,6 @@ const List = () => {
                   >
                     Edit
                   </Link>
-                  <Link
-                    to={`delete/${user.id}`}
-                    className="btn btn-sm btn-primary mr-1"
-                  >
-                    Delete
-                  </Link>
                   <button
                     onClick={() => deleteUser(user.id)}
                     className="btn btn-sm btn-danger btn-delete-user"
