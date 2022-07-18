@@ -3,17 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../reducers';
 
 const EditUser = ({match}) => {
   const { id } = useParams();
   const dispatch = useDispatch()
-  const navigate = useNavigate();
 
   const user = useSelector(({ users }) =>{
     return users.filter((user) => user.id == id)[0];
   })
+  
+  function updateUser(id, data) {
+    const payload = {
+      id,
+      user: data,
+      action: 'UPDATE_USER'
+    }
+    dispatch(userActions(payload))
+  }
 
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
