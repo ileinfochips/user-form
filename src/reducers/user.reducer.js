@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userReducer } from '../actions/users'
 
-// const baseUrl = '/users';
 let id = 1;
 let usersList = [
   {
@@ -21,14 +20,12 @@ export const userService = {
 
 function getAll() {
   return new Promise((resolve, reject) => resolve(usersList));
-  // return fetchWrapper.get(baseUrl);
 }
 
 function getById(id) {
   let user = usersList.filter((user) => user.id == id)[0];
   console.log(user);
   return new Promise((resolve, reject) => resolve(user));
-  // return fetchWrapper.get(`${baseUrl}/${id}`);
 }
 
 function update(id, params) {
@@ -38,16 +35,12 @@ function update(id, params) {
   let users = usersList.filter((user) => user.id != id);
   usersList = [...users, updatedUser];
   return new Promise((resolve, reject) => resolve(usersList));
-
-  // return fetchWrapper.put(`${baseUrl}/${id}`, params);
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
 function _delete(id) {
   // let users = usersList.filter((user) => user.id !== id);
   return new Promise((resolve, reject) => resolve(usersList));
-
-  // return fetchWrapper.delete(`${baseUrl}/${id}`);
 }
 
 export const userSliceReducer = createSlice({
