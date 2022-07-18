@@ -1,6 +1,6 @@
 import reducers from './reducers';
 
-test('reducers', () => {
+test('reducers delete user', () => {
     let state;
     state = reducers(
         {
