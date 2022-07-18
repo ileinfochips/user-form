@@ -1,6 +1,6 @@
 
-export const update = (state, id, user) => {
+export const updateUser = (state, id, user) => {
     console.log(id, user)
 }
 
-export default update;
+export default updateUser;

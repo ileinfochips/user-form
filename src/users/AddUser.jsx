@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup';
 
-import { userService, alertService } from '../reducers';
+import { userService } from '../reducers';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../reducers';
 
@@ -34,7 +34,7 @@ const AddUser = (props) =>  {
 
   function onSubmit(data) {
     const payload = {
-      action: 'add',
+      action: 'ADD_USER',
       user: data
     }
     dispatch(userActions(payload))

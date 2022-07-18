@@ -5,7 +5,7 @@ import { userReducer } from '../actions/users'
 let id = 1;
 let usersList = [
   {
-    id: 1,
+    id: 0,
     firstName: 'John',
     lastName: 'Doe',
     email: 'johndoe@gmail.com',
@@ -16,9 +16,7 @@ let usersList = [
 export const userService = {
   getAll,
   getById,
-  create,
   update,
-  delete: _delete,
 };
 
 function getAll() {
@@ -31,13 +29,6 @@ function getById(id) {
   console.log(user);
   return new Promise((resolve, reject) => resolve(user));
   // return fetchWrapper.get(`${baseUrl}/${id}`);
-}
-
-function create(params) {
-  let newUser = { ...params, id: ++id };
-  usersList.push(newUser);
-  return new Promise((resolve, reject) => resolve(usersList));
-  // return fetchWrapper.post(baseUrl, params);
 }
 
 function update(id, params) {
@@ -61,19 +52,18 @@ function _delete(id) {
 
 export const userSliceReducer = createSlice({
 	name: 'users',
-	initialState: { value: usersList },
+	initialState: usersList,
 	reducers: {
-		userActions: ({value}, { payload: {action, user, id} }) => {
-			switch(action){
-				case 'add':
-          userReducer.createUser(value, user)
-				case 'update':
-					// userReducer.updateUser(state, payload.id, payload.user)
-				case 'delete':
-					userReducer.deleteUser(value, id)
-					// return [...state, payload.user];
+		userActions: (state, { payload: {action, user, id} }) => {
+			switch( action ){
+				case 'ADD_USER':
+					return userReducer.createUser(state, user);
+				case 'UPDATE_USER':
+					return userReducer.updateUser(state, id, user);
+				case 'DELETE_USER':
+					return userReducer.deleteUser(state, id);
 				default:
-					// return state
+					return state
 			}
 		}
 	}

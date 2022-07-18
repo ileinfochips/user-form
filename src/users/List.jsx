@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 
@@ -8,18 +8,23 @@ const List = () => {
 
   const dispatch = useDispatch()
 
-  const userList = useSelector((state) =>{
-    return state.users.value
+  const userList = useSelector(({users}) =>{
+    return users
   })
 
-  const [users, setUsers] = useState(userList);
+  const [users, setUsers] = useState(null);
+
+  useEffect(()=>{
+    setUsers(userList)
+  }, [userList])
 
   function deleteUser(id) {
     const payload = {
       id,
-      action: 'delete'
+      action: 'DELETE_USER'
     }
-    dispatch(userActions(payload))
+    dispatch(userActions(payload));
+    setUsers(users.filter(user => user.id != id))
   }
 
   return (
