@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { React } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { useDispatch } from 'react-redux';
@@ -9,14 +8,11 @@ import { userActions } from '../reducers';
 
 const AddUser = (props) =>  {
   const dispatch = useDispatch();
-  const {id} = props.match;
   const navigate = useNavigate();
-
 
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  // form validation rules
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name is required'),
     lastName: Yup.string().required('Last Name is required'),
@@ -89,6 +85,7 @@ const AddUser = (props) =>  {
   //   </form>
   // );
 
+
   return (
     <Formik
       initialValues={{ firstName: '', lastName: '', email: '', phone: '' }}
@@ -100,7 +97,7 @@ const AddUser = (props) =>  {
           .max(20, 'Must be 20 characters or less')
           .required('Required'),
         email: Yup.string().email('Invalid email address').required('Required'),
-        phone: Yup.string().required('Required'),
+        phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         console.log(values);

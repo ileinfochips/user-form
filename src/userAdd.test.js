@@ -1,6 +1,6 @@
 import reducers from './reducers';
 
-test('reducers', () => {
+test('reducers add user', () => {
     let state;
     state = reducers(
         {

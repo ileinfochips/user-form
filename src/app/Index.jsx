@@ -1,9 +1,7 @@
 import React from 'react';
 import { Route, Routes, Redirect, useLocation,  useParams, useNavigate } from 'react-router-dom';
 
-import { Nav, 
-    // Alert
-} from '../components';
+import { Nav } from '../components';
 import { Home } from '../home/Index';
 import { Users } from '../users/Index';
 function App() {
@@ -20,7 +18,6 @@ function App() {
     return (
         <div className="app-container bg-light">
             <Nav />
-            {/* <Alert /> */}
             <div className="container pt-4 pb-4">
                 <Routes>
                     <Route exact path="/" element={<Home />} />
