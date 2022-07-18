@@ -14,15 +14,6 @@ const EditUser = ({match}) => {
     return users.filter((user) => user.id == id)[0];
   })
   
-  function updateUser(id, data) {
-    const payload = {
-      id,
-      user: data,
-      action: 'UPDATE_USER'
-    }
-    dispatch(userActions(payload))
-  }
-
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -40,7 +31,6 @@ const EditUser = ({match}) => {
         phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
         const payload = {
           id,
           user: values,
@@ -52,23 +42,36 @@ const EditUser = ({match}) => {
       }}
     >
       <Form>
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" type="text"  className="form-control" />
-        <ErrorMessage name="firstName" />
+        <div class="form-group">
+            <label htmlFor="firstName">First Name</label>
+            <Field name="firstName" type="text"  className="form-control" />
+            <ErrorMessage name="firstName" >
+              { msg => <div style={{ color: 'red' }}>{msg}</div> }
+            </ErrorMessage>
+        </div>
 
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" type="text" className="form-control" />
-        <ErrorMessage name="lastName" />
+        <div class="form-group">
+          <label htmlFor="lastName">Last Name</label> 
+          <Field name="lastName" type="text" className="form-control" />
+          <ErrorMessage name="lastName" />        
+        </div>
+        
 
-        <label htmlFor="email">Email Address</label>
-        <Field name="email" type="email" className="form-control" />
-        <ErrorMessage name="email" />
+        <div class="form-group">
+          <label htmlFor="email">Email Address</label>
+          <Field name="email" type="email" className="form-control" />
+          <ErrorMessage name="email" />        
+        </div>
+        
 
-        <label htmlFor="phone">Phone No</label>
-        <Field name="phone" type="text" className="form-control" />
-        <ErrorMessage name="phone" />
+        <div class="form-group">
+          <label htmlFor="phone">Phone No</label>
+          <Field name="phone" type="text" className="form-control" />
+          <ErrorMessage name="phone" />        
+        </div>
+        
 
-        <button type="submit">Submit</button>
+        <button className="btn btn-primary" type="submit">Submit</button>
         <Link to={'/users'} className="btn btn-link">
            Cancel
          </Link>
