@@ -8,7 +8,7 @@ const List = () => {
 
   const dispatch = useDispatch()
 
-  const userList = useSelector(({users}) =>{
+  const userList = useSelector(({ users }) =>{
     return users
   })
 

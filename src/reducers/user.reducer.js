@@ -13,8 +13,6 @@ let usersList = [
 ];
 
 export const userService = {
-  getAll,
-  getById,
   update,
 };
 
