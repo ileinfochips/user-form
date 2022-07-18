@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userReducer } from '../actions/users'
 
-let id = 1;
 let usersList = [
   {
     id: 0,
