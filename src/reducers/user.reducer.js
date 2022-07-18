@@ -14,22 +14,8 @@ let usersList = [
 ];
 
 export const userService = {
-  getAll,
-  getById,
   update,
 };
-
-function getAll() {
-  return new Promise((resolve, reject) => resolve(usersList));
-  // return fetchWrapper.get(baseUrl);
-}
-
-function getById(id) {
-  let user = usersList.filter((user) => user.id == id)[0];
-  console.log(user);
-  return new Promise((resolve, reject) => resolve(user));
-  // return fetchWrapper.get(`${baseUrl}/${id}`);
-}
 
 function update(id, params) {
   let user = usersList.find((user) => user.id == id);

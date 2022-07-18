@@ -3,12 +3,17 @@ import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-
-import { userService, alertService } from '../reducers';
+import { useSelector, useDispatch } from 'react-redux';
+import { userService, alertService, userActions } from '../reducers';
 
 const EditUser = ({match}) => {
   const { history } = match;
   const { id } = useParams();
+  const dispatch = useDispatch()
+
+  const user = useSelector(({ users }) =>{
+    return users.filter((user) => user.id == id)[0];
+  })
 
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -34,21 +39,17 @@ const EditUser = ({match}) => {
   }
 
   function updateUser(id, data) {
-    return userService
-      .update(id, data)
-      .then(() => {
-        alertService.success('User updated', { keepAfterRouteChange: true });
-        history.push('..');
-      })
-      .catch(alertService.error);
+    const payload = {
+      id,
+      user: data,
+      action: 'UPDATE_USER'
+    }
+    dispatch(userActions(payload))
   }
 
   useEffect(() => {
-    // get user and set form fields
-    userService.getById(id).then((user) => {
-      const fields = ['firstName', 'lastName', 'email', 'phone'];
-      fields.forEach((field) => setValue(field, user[field]));
-    });
+    const fields = ['firstName', 'lastName', 'email', 'phone'];
+    fields.forEach((field) => setValue(field, user[field]));
   }, []);
 
   return (
