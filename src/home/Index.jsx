@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
     return (
         <div>
-            <h1>React - CRUD Example with React Hook Form</h1>
-            <p>An example app showing how to list, add, edit and delete user records with React and the React Hook Form library.</p>
+            <h1>React - CRUD Example with Redux & Formik</h1>
             <p><Link to="users">&gt;&gt; Manage Users</Link></p>
         </div>
     );

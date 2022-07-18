@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userReducer } from '../actions/users'
 
-// const baseUrl = '/users';
-let id = 1;
 let usersList = [
   {
     id: 0,
@@ -12,29 +10,6 @@ let usersList = [
     phone: '1234567890',
   },
 ];
-
-export const userService = {
-  update,
-};
-
-function update(id, params) {
-  let user = usersList.find((user) => user.id == id);
-  let updatedUser = { ...user, ...params };
-  // Remove user with id
-  let users = usersList.filter((user) => user.id != id);
-  usersList = [...users, updatedUser];
-  return new Promise((resolve, reject) => resolve(usersList));
-
-  // return fetchWrapper.put(`${baseUrl}/${id}`, params);
-}
-
-// prefixed with underscored because delete is a reserved word in javascript
-function _delete(id) {
-  // let users = usersList.filter((user) => user.id !== id);
-  return new Promise((resolve, reject) => resolve(usersList));
-
-  // return fetchWrapper.delete(`${baseUrl}/${id}`);
-}
 
 export const userSliceReducer = createSlice({
 	name: 'users',

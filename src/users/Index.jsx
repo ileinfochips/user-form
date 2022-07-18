@@ -6,11 +6,13 @@ import { AddUser } from './AddUser';
 import { EditUser } from './EditUser';
 
 const Users = (match) => {
+  const { path } = match;
+
   return (
     <div className="container pt-4 pb-4">
       <Routes>
         <Route index element={<List />} />
-        <Route path='add' element={<AddUser match={match}/>} />
+        <Route path='add' element={<AddUser />} />
         <Route path='edit/:id' element={<EditUser match={match}/>} />
       </Routes>
     </div>
