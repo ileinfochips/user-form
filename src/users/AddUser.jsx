@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,15 +7,12 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../reducers';
 
-const AddUser = (props) =>  {
+const AddUser = () =>  {
   const dispatch = useDispatch();
-  const {id} = props.match;
 
-  const isAddMode = !id;
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  // form validation rules
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name is required'),
     lastName: Yup.string().required('Last Name is required'),
@@ -25,7 +22,6 @@ const AddUser = (props) =>  {
       .required('Phone is required'),
   });
 
-  // functions to build form returned by useForm() hook
   const { register, handleSubmit, reset, setValue, formState } =
     useForm({
       resolver: yupResolver(validationSchema),
@@ -38,16 +34,6 @@ const AddUser = (props) =>  {
     }
     dispatch(userActions(payload))
   }
-
-  // useEffect(() => {
-  //   if (!isAddMode) {
-  //     // get user and set form fields
-  //     userService.getById(id).then((user) => {
-  //       const fields = ['firstName', 'lastName', 'email', 'phone'];
-  //       fields.forEach((field) => setValue(field, user[field]));
-  //     });
-  //   }
-  // }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>

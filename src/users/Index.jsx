@@ -10,7 +10,7 @@ const Users = (match) => {
     <div className="container pt-4 pb-4">
       <Routes>
         <Route index element={<List />} />
-        <Route path='add' element={<AddUser match={match}/>} />
+        <Route path='add' element={<AddUser />} />
         <Route path='edit/:id' element={<EditUser match={match}/>} />
       </Routes>
     </div>

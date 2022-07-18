@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../reducers';
 
 const EditUser = ({match}) => {
-  const { history } = match;
   const { id } = useParams();
   const dispatch = useDispatch()
 
