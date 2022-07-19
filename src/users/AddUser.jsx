@@ -37,7 +37,7 @@ const AddUser = (props) =>  {
       }}
     >
       <Form>
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="firstName">First Name</label>
             <Field name="firstName" type="text"  className="form-control" />
             <ErrorMessage name="firstName" >
@@ -45,7 +45,7 @@ const AddUser = (props) =>  {
             </ErrorMessage>
           </div>
 
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="lastName">Last Name</label>
             <Field name="lastName" type="text" className="form-control" />
             <ErrorMessage name="lastName" >
@@ -53,7 +53,7 @@ const AddUser = (props) =>  {
             </ErrorMessage>
           </div>
 
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <Field name="email" type="email" className="form-control" />
 			<ErrorMessage name="email" >
@@ -61,7 +61,7 @@ const AddUser = (props) =>  {
             </ErrorMessage>
           </div>
 
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="phone">Phone No</label>
             <Field name="phone" type="text" className="form-control" />
 			<ErrorMessage name="phone" >

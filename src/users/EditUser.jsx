@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../reducers';
 
 const EditUser = ({match}) => {
   const { id } = useParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const user = useSelector(({ users }) =>{
     return users.filter((user) => user.id == id)[0];
@@ -42,7 +42,7 @@ const EditUser = ({match}) => {
       }}
     >
       <Form>
-        <div class="form-group">
+        <div className="form-group">
             <label htmlFor="firstName">First Name</label>
             <Field name="firstName" type="text"  className="form-control" />
             <ErrorMessage name="firstName" >
@@ -50,21 +50,21 @@ const EditUser = ({match}) => {
             </ErrorMessage>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor="lastName">Last Name</label> 
           <Field name="lastName" type="text" className="form-control" />
           <ErrorMessage name="lastName" />        
         </div>
         
 
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor="email">Email Address</label>
           <Field name="email" type="email" className="form-control" />
           <ErrorMessage name="email" />        
         </div>
         
 
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor="phone">Phone No</label>
           <Field name="phone" type="text" className="form-control" />
           <ErrorMessage name="phone" />        
