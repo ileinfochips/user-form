@@ -7,7 +7,7 @@ import { userActions } from '../reducers';
 
 const EditUser = ({match}) => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const user = useSelector(({ users }) =>{
