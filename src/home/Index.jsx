@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styles from './index.module.scss';
+import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
+    const navigate = useNavigate();
+
     return (
         <div>
             <h1>React - CRUD Example with Redux & Formik</h1>
-            <p><Link to="users">&gt;&gt; Manage Users</Link></p>
+            <button className="btn btn-primary" onClick={() => navigate(`/users`)}>
+                Manage Users
+            </button>
         </div>
     );
 }

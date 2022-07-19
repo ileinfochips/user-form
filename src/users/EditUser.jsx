@@ -70,7 +70,7 @@ const EditUser = ({match}) => {
         </div>
         
         <button className="btn btn-primary" type="submit">
-          Submit
+          Save
         </button>
         <button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`)}>
           Cancel

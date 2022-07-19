@@ -71,7 +71,7 @@ const AddUser = (props) =>  {
             </ErrorMessage>
           </div>
 
-        <button className="btn btn-primary" type="submit">Submit</button>
+        <button className="btn btn-primary" type="submit">Add User</button>
         <button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`)}>
           Cancel
         </button>
