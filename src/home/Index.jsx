@@ -8,7 +8,7 @@ const Home = () => {
 
     return (
         <div>
-            <h1>React - CRUD Example with Redux & Formik</h1>
+            <h1>user-form App with Redux & Formik</h1>
             <button className="btn btn-primary" onClick={() => navigate(`/users`)}>
                 Manage Users
             </button>
