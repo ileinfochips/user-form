@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { userActions } from '../reducers';
+import styles from './EditUser.module.scss';
 
 const EditUser = ({match}) => {
   const { id } = useParams();
@@ -56,25 +57,25 @@ const EditUser = ({match}) => {
           <ErrorMessage name="lastName" />        
         </div>
         
-
         <div className="form-group">
           <label htmlFor="email">Email Address</label>
           <Field name="email" type="email" className="form-control" />
           <ErrorMessage name="email" />        
         </div>
         
-
         <div className="form-group">
           <label htmlFor="phone">Phone No</label>
           <Field name="phone" type="text" className="form-control" />
           <ErrorMessage name="phone" />        
         </div>
         
-
-        <button className="btn btn-primary" type="submit">Submit</button>
-        <Link to={'/users'} className="btn btn-link">
-           Cancel
-         </Link>
+        <button className="btn btn-primary" type="submit">
+          Submit
+        </button>
+        <button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`)}>
+          Cancel
+        </button>
+      
       </Form>
     </Formik>
   );
