@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { PreventDeleteModal } from '../components/PopUp';
 import { userActions } from '../reducers';
-import Button from 'react-bootstrap/Button';
-
 
 const List = () => {
 
