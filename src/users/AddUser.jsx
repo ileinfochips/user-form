@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../reducers';
 
+import styles from './AddUser.module.scss';
+
 const AddUser = (props) =>  {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -70,9 +72,10 @@ const AddUser = (props) =>  {
           </div>
 
         <button className="btn btn-primary" type="submit">Submit</button>
-        <Link to={'/users'} className="btn btn-link">
-           Cancel
-         </Link>
+        <button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`)}>
+          Cancel
+        </button>
+      
       </Form>
     </Formik>
   );
