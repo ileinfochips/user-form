@@ -4,6 +4,7 @@ import { Route, Routes, Redirect, useLocation,  useParams, useNavigate } from 'r
 import { Nav } from '../components';
 import { Home } from '../home/Index';
 import { Users } from '../users/Index';
+
 function App() {
     const { pathname } = useLocation();
     const {id} = useParams();
