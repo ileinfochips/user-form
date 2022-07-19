@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
 
 import { PreventDeleteModal } from '../components/PopUp';
 import { userActions } from '../reducers';
@@ -11,15 +8,9 @@ import { userActions } from '../reducers';
 const List = () => {
 
   const dispatch = useDispatch()
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const userList = useSelector(({ users }) =>{
     return users
   })
-
   const [users, setUsers] = useState(userList);
   const [modalShow, setModalShow] = useState(false);
   const [deleteUser, setDeleteUser] = useState({
@@ -100,7 +91,7 @@ const List = () => {
                     setModalShow(true);
                     handleDeleteUser(user.id);
                     }}>
-                    {deleteUser.isDeleting ? (
+                    {user.id == deleteUser.user.id && deleteUser.isDeleting ? (
                       <span className="spinner-border spinner-border-sm"></span>
                     ) : (
                       <span>Delete</span>

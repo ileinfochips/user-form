@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Redirect, useLocation,  useParams, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation,  useParams, useNavigate } from 'react-router-dom';
 
 import { Nav } from '../components';
 import { Home } from '../home/Index';
