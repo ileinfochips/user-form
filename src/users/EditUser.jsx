@@ -54,25 +54,31 @@ const EditUser = ({match}) => {
         <div className="form-group">
           <label htmlFor="lastName">Last Name</label> 
           <Field name="lastName" type="text" className="form-control" />
-          <ErrorMessage name="lastName" />        
+          <ErrorMessage name="lastName">
+            { msg => <div style={{ color: 'red' }}>{msg}</div> }
+          </ErrorMessage>
         </div>
         
         <div className="form-group">
           <label htmlFor="email">Email Address</label>
           <Field name="email" type="email" className="form-control" />
-          <ErrorMessage name="email" />        
+          <ErrorMessage name="email">
+            { msg => <div style={{ color: 'red' }}>{msg}</div> }
+          </ErrorMessage>        
         </div>
         
         <div className="form-group">
           <label htmlFor="phone">Phone No</label>
           <Field name="phone" type="text" className="form-control" />
-          <ErrorMessage name="phone" />        
+          <ErrorMessage name="phone">
+            { msg => <div style={{ color: 'red' }}>{msg}</div> }
+          </ErrorMessage>        
         </div>
         
         <button className="btn btn-primary" type="submit">
           Save
         </button>
-        <button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`)}>
+        <button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`, {replace: true})}>
           Cancel
         </button>
       
