@@ -42,47 +42,48 @@ const EditUser = ({match}) => {
         navigate(-1);
       }}
     >
-      <Form>
-        <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" type="text"  className="form-control" />
-            <ErrorMessage name="firstName" >
-              { msg => <div style={{ color: 'red' }}>{msg}</div> }
-            </ErrorMessage>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="lastName">Last Name</label> 
-          <Field name="lastName" type="text" className="form-control" />
-          <ErrorMessage name="lastName">
-            { msg => <div style={{ color: 'red' }}>{msg}</div> }
-          </ErrorMessage>
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="email">Email Address</label>
-          <Field name="email" type="email" className="form-control" />
-          <ErrorMessage name="email">
-            { msg => <div style={{ color: 'red' }}>{msg}</div> }
-          </ErrorMessage>        
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="phone">Phone No</label>
-          <Field name="phone" type="text" className="form-control" />
-          <ErrorMessage name="phone">
-            { msg => <div style={{ color: 'red' }}>{msg}</div> }
-          </ErrorMessage>        
-        </div>
-        
-        <button className="btn btn-primary" type="submit">
-          Save
-        </button>
-        <button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`, {replace: true})}>
-          Cancel
-        </button>
-      
-      </Form>
+      {(formik) => (
+			<Form>
+				<div className="form-group">
+					<label htmlFor="firstName">First Name</label>
+					<Field name="firstName" type="text"  className="form-control" />
+					<ErrorMessage name="firstName" >
+						{ msg => <div style={{ color: 'red' }}>{msg}</div> }
+					</ErrorMessage>
+				</div>
+		
+				<div className="form-group">
+					<label htmlFor="lastName">Last Name</label> 
+					<Field name="lastName" type="text" className="form-control" />
+					<ErrorMessage name="lastName">
+					{ msg => <div style={{ color: 'red' }}>{msg}</div> }
+					</ErrorMessage>
+				</div>
+				
+				<div className="form-group">
+					<label htmlFor="email">Email Address</label>
+					<Field name="email" type="email" className="form-control" />
+					<ErrorMessage name="email">
+					{ msg => <div style={{ color: 'red' }}>{msg}</div> }
+					</ErrorMessage>        
+				</div>
+				
+				<div className="form-group">
+					<label htmlFor="phone">Phone No</label>
+					<Field name="phone" type="text" className="form-control" />
+					<ErrorMessage name="phone">
+					{ msg => <div style={{ color: 'red' }}>{msg}</div> }
+					</ErrorMessage>        
+				</div>
+				
+				<button disabled={formik.isSubmitting || Object.keys(formik.errors).length != 0} className="btn btn-primary" type="submit">
+					Save
+				</button>
+				<button className={`btn btn-secondary ${styles.rightButton}`} onClick={() => navigate(`/users`, {replace: true})}>
+					Cancel
+				</button>
+			</Form>
+      )}
     </Formik>
   );
 }

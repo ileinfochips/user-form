@@ -1,10 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export const PreventDeleteModal = (props) => {
+export const ConfirmDelete = (props) => {
+  const { handleDeleteObject, objectToDelete, ...rest } = props;
   return (
     <Modal
-      {...props}
+      {...rest}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -17,12 +18,12 @@ export const PreventDeleteModal = (props) => {
       <Modal.Body>
         <p>
           {
-            props.user.user.firstName + ' ' + props.user.user.lastName
+            props.objectToDelete.name
           } is about to be deleted. Confirm or cancel please.
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.handleDeleteUser}>Confirm</Button>
+        <Button onClick={props.handleDeleteObject}>Confirm</Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

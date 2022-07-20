@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { PreventDeleteModal } from '../components/PopUp';
+import { ConfirmDelete } from '../components/ConfirmDelete';
 import { userActions } from '../reducers';
 
 const List = () => {
@@ -17,8 +17,9 @@ const List = () => {
     user: {},
     isDeleting: false,
   });
+  const [objectToDelete, setObjectToDelete] = useState({})
 
-  const handleDeleteUser = (id) => {
+  const handleDeleteObject = (id) => {
     if(deleteUser.isDeleting) {
       const payload = {
         id: deleteUser.user.id,
@@ -33,17 +34,21 @@ const List = () => {
       setModalShow(false);
       return;
     }
-    let user = { 
+    let user = {
       user: users.filter(user => user.id == id)[0],
       isDeleting: true
+    }
+    const objectToDelete = {
+      name: user.user.firstName + ' ' + user.user.lastName, 
     };
+    setObjectToDelete(objectToDelete)
     setDeleteUser(user)
   }
 
 
   return (
     <div>
-        <PreventDeleteModal
+        <ConfirmDelete
           show={modalShow}
           onHide={() => 
             {            
@@ -54,8 +59,8 @@ const List = () => {
               })
             }
           }
-          user={deleteUser}
-          handleDeleteUser={handleDeleteUser}
+          objectToDelete={objectToDelete}
+          handleDeleteObject={handleDeleteObject}
         />
        
       	<h1>Users</h1>
@@ -87,9 +92,9 @@ const List = () => {
                   >
                     Edit
                   </Link>
-                  <button type="button" class="btn btn-sm btn-danger" onClick={() => {
+                  <button type="button" className="btn btn-sm btn-danger" onClick={() => {
                     setModalShow(true);
-                    handleDeleteUser(user.id);
+                    handleDeleteObject(user.id);
                     }}>
                     {user.id == deleteUser.user.id && deleteUser.isDeleting ? (
                       <span className="spinner-border spinner-border-sm"></span>

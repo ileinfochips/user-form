@@ -7,7 +7,7 @@ import { Users } from '../users/Index';
 
 function App() {
     const { pathname } = useLocation();
-    const {id} = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const match = {
