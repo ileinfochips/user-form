@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage, useField } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -11,6 +11,19 @@ import styles from './AddUser.module.scss';
 const AddUser = (props) =>  {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const CustomInputComponent = ({
+    field, // { name, value, onChange, onBlur }
+    form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+    ...props
+  }) => (
+    <div>
+      <input type="text" {...field} {...props} className={ touched[field.name] &&
+        errors[field.name] ? `form-control ${styles.invalid}` : "form-control" }/>
+      {touched[field.name] &&
+        errors[field.name] && <div className="error">{errors[field.name]}</div>}
+    </div>
+  );
 
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -41,7 +54,14 @@ const AddUser = (props) =>  {
       <Form>
           <div className="form-group">
             <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" type="text"  className="form-control" />
+            <Field type="text" name="firstName">
+              { ({ 
+                  field, 
+                  meta: { touched, error } 
+                }) => <input className={ touched && error ? `form-control ${styles.invalid}` : "form-control" } { ...field } />
+              }
+            </Field>
+
             <ErrorMessage name="firstName" >
               { msg => <div style={{ color: 'red' }}>{msg}</div> }
             </ErrorMessage>
@@ -82,3 +102,7 @@ const AddUser = (props) =>  {
 }
 
 export { AddUser };
+
+// Agregar border rojo a inputs no validos
+// Crear smart-dumb components
+// Desahabilitar el boton de Guardar cuando el form sea invalido
