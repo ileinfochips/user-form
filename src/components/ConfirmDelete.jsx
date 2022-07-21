@@ -24,7 +24,7 @@ export const ConfirmDelete = (props) => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.handleDeleteObject}>Confirm</Button>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={props.onHide}>Cancel</Button>
       </Modal.Footer>
     </Modal>
   );
