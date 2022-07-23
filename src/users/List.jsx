@@ -6,7 +6,7 @@ import { ConfirmDelete } from '../components/ConfirmDelete';
 import { userActions } from '../reducers';
 
 const List = () => {
-
+	console.log('List render again')
   const dispatch = useDispatch()
   const userList = useSelector(({ users }) =>{
     return users

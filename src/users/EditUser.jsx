@@ -10,7 +10,7 @@ const EditUser = ({match}) => {
   const { id } = useParams();
   const dispatch = useDispatch()
   const navigate = useNavigate();
-
+	console.log('Edit User render again')
   const user = useSelector(({ users }) =>{
     return users.filter((user) => user.id == id)[0];
   })

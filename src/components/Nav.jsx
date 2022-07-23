@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function Nav() {
+const Nav = React.memo(() => {
+    console.log('Nav render again')
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark">
             <div className="navbar-nav">
@@ -10,6 +11,6 @@ function Nav() {
             </div>
         </nav>
     );
-}
+})
 
-export { Nav }; 
+export { Nav }

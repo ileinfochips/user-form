@@ -1,7 +1,9 @@
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export const ConfirmDelete = (props) => {
+export const ConfirmDelete = React.memo((props) => {
+  console.log('confirm delete render again')
   const { handleDeleteObject, objectToDelete, ...rest } = props;
   return (
     <Modal
@@ -28,5 +30,5 @@ export const ConfirmDelete = (props) => {
       </Modal.Footer>
     </Modal>
   );
-}
+})
   

@@ -10,7 +10,7 @@ import { CustomInputComponent } from '../components';
 const AddUser = (props) =>  {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+	console.log('Add User render again')
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   
